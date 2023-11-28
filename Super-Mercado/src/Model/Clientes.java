@@ -5,15 +5,13 @@ public class Clientes {
     //atributos
     private String cpf;
     private String email;
-    private String senha;
     private String telefone;
     private String endereco;
 
     //construtor
-    public Clientes(String cpf, String email, String senha, String telefone, String endereco) {
+    public Clientes(String cpf, String email, String telefone, String endereco) {
         this.cpf = cpf;
         this.email = email;
-        this.senha = senha;
         this.telefone = telefone;
         this.endereco = endereco;
     }
@@ -33,14 +31,6 @@ public class Clientes {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public String getTelefone() {
