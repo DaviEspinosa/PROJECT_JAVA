@@ -1,4 +1,3 @@
-import View.JanelaCaixa;
 import View.JanelaPrincipal;
 
 public class App {
