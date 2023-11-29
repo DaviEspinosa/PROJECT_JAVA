@@ -1,6 +1,10 @@
 package App;
+
+import View.JanelaCaixa;
+import View.JanelaPrincipal;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        // new JanelaPrincipal.run();
+        new JanelaPrincipal().run();
     }
 }
