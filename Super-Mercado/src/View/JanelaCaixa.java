@@ -24,6 +24,7 @@ public class JanelaCaixa extends JPanel {
     public JanelaCaixa() {
         // Cor de fundo da janela
         this.setBackground(cinza);
+        this.setSize(600, 400);
 
         // Instanciando os TextField
         codigoBarras = new JTextField(20);
