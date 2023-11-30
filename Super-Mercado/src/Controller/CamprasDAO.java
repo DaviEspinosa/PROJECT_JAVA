@@ -1,4 +1,4 @@
-package Connection;
+package Controller;
 
 public class CamprasDAO {
     
