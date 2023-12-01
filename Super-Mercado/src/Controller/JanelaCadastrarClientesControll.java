@@ -4,8 +4,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
-import javax.swing.JTextField;
-
 public class JanelaCadastrarClientesControll {
 
    public JTextField createTextFieldWithPlaceholder(String placeholder) {

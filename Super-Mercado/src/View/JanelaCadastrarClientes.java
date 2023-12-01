@@ -69,7 +69,6 @@ public class JanelaCadastrarClientes extends JPanel {
 
         // Instanciando o painel cadastro
         cadastro = new JPanel();
-        cadastro.setSize(600, 900);
         cadastro.setLayout(new BoxLayout(cadastro, BoxLayout.Y_AXIS));
         cadastro.setBackground(branca);
         cadastro.setPreferredSize(new Dimension(700, 400));
