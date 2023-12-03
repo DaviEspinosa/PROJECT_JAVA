@@ -21,7 +21,9 @@ public class JanelaCadastrarClientes extends JPanel {
     private JTextField endereco;
     private JPanel cadastro;
     private JPanel acoesCadastro;
+    private JPanel invisivel;
     private JButton cadastrar, cancelar;
+    private Color transparente = new Color(0, 0, 0, 0);
     private Color cinza = new Color(128, 128, 128);
     private Color cinzaClaro = new Color(217, 217, 217);
     private Color branca = new Color(255, 255, 255);
@@ -33,15 +35,22 @@ public class JanelaCadastrarClientes extends JPanel {
         // Adicionando uma cor
         this.setBackground(cinza);
 
+        // Instanciando o painel invisivel para deixar o container no centro da tela
+        invisivel = new JPanel();
+        invisivel.setLayout(new BorderLayout());
+        invisivel.setBackground(transparente);
+        invisivel.setPreferredSize(new Dimension(1400, 200));
+        this.add(invisivel, BorderLayout.NORTH);
+
         // Instanciando o controlador da janela
         JanelaCadastrarClientesControll controlador = new JanelaCadastrarClientesControll();
         // Adicionando título
 
         // Instanciando os campos de entarda de dados
-        nome = new JTextField("Nome", 20);
-        email = new JTextField("Email", 20);
-        cpf = new JTextField("Cpf", 20);
-        endereco = new JTextField("Endereço", 20);
+        nome = new JTextField();
+        email = new JTextField();
+        cpf = new JTextField();
+        endereco = new JTextField();
 
         nome = controlador.createTextFieldWithPlaceholder("Nome");
         email = controlador.createTextFieldWithPlaceholder("Email");
@@ -82,7 +91,7 @@ public class JanelaCadastrarClientes extends JPanel {
         // Instanciando o painel acoesCadastro
         acoesCadastro = new JPanel();
         acoesCadastro.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        acoesCadastro.setBackground(branca);
+        acoesCadastro.setBackground(cinzaClaro);
 
         // Instanciando os botões(cadastrar, excluir)
         cadastrar = new JButton("Cadastrar");
@@ -107,6 +116,7 @@ public class JanelaCadastrarClientes extends JPanel {
         container.add(cadastro, BorderLayout.CENTER);
         container.add(acoesCadastro, BorderLayout.EAST);
         container.setBounds(100, 200, 600, 600);
+        add(invisivel);
         add(container);
     }
 }

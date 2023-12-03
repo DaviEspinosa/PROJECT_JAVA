@@ -1,5 +1,7 @@
 package View;
 
+import Controller.JanelaPrincipalControll;
+
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 
@@ -9,6 +11,7 @@ public class JanelaPrincipal extends JFrame{
 
     public JanelaPrincipal() {
         JTPane = new JTabbedPane();
+        JTPane.setUI(new JanelaPrincipalControll());
         add(JTPane);
 
         //Adicionando as tabs

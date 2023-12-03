@@ -16,6 +16,7 @@ public class JanelaCaixa extends JPanel {
     private Color cinza = new Color(128, 128, 128);
     private JPanel informacoesVenda;// Total, compras, desconto aplicado, quantidade;
     private JTextField codigoBarras;
+    private JTextField quantidade;
     private JTextField cliente;
     private JTextField descontoAplicado;
     private JTextField total;

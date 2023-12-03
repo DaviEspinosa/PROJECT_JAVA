@@ -1,5 +1,7 @@
 package View;
 
+import Controller.JanelaCadastrarProdutosControll;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,7 +21,9 @@ public class JanelaCadastrarProdutos extends JPanel {
     private JTextField valor;
     private JPanel cadastroProdutos;
     private JPanel acoesCadastroProdutos;
+    private JPanel invisivel;
     private JButton cadastrar, cancelar;
+    private Color transparente = new Color(0, 0, 0, 0);
     private Color cinza = new Color(128, 128, 128);
     private Color cinzaClaro = new Color(217, 217, 217);
     private Color branca = new Color(255, 255, 255);
@@ -29,12 +33,27 @@ public class JanelaCadastrarProdutos extends JPanel {
     public JanelaCadastrarProdutos() {
         // Adicionando uma cor
         this.setBackground(cinza);
+        // Instanciando o painel invisivel para deixar o container no centro da tela
+        invisivel = new JPanel();
+        invisivel.setLayout(new BorderLayout());
+        invisivel.setBackground(transparente);
+        invisivel.setPreferredSize(new Dimension(1400, 200));
+        this.add(invisivel, BorderLayout.NORTH);
+
+        // Instanciando o controlador da classe
+        JanelaCadastrarProdutosControll controladorProdutos = new JanelaCadastrarProdutosControll();
 
         // Instanciando os TextField
-        nomeProduto = new JTextField("Nome do Produto", 20);
-        codigoBarra = new JTextField("Código de barra", 20);
-        quantidade = new JTextField("Quantidade", 20);
-        valor = new JTextField("Valor", 20);
+        nomeProduto = new JTextField();
+        codigoBarra = new JTextField();
+        quantidade = new JTextField();
+        valor = new JTextField();
+
+        // Adicionando o placeholder aos TextField
+        nomeProduto = controladorProdutos.createTextFieldWithPlaceholderProdutos("Nome do Produto");
+        codigoBarra = controladorProdutos.createTextFieldWithPlaceholderProdutos("Código de barra");
+        quantidade = controladorProdutos.createTextFieldWithPlaceholderProdutos("Quantidade");
+        valor = controladorProdutos.createTextFieldWithPlaceholderProdutos("Valor");
 
         // Adicionando cores aos TextField
         nomeProduto.setBackground(cinzaClaro);
@@ -55,7 +74,7 @@ public class JanelaCadastrarProdutos extends JPanel {
 
         // Adicionando tamanho para eles
         cadastroProdutos.setPreferredSize(new Dimension(700, 400));
-        
+
         // Configurando o layout
         cadastroProdutos.setLayout(new BoxLayout(cadastroProdutos, BoxLayout.Y_AXIS));
         acoesCadastroProdutos.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -64,10 +83,10 @@ public class JanelaCadastrarProdutos extends JPanel {
         cadastrar = new JButton("Cadastrar");
         cancelar = new JButton("Cancelar");
 
-        //Adicionando uma cor para eles
+        // Adicionando uma cor para eles
         cadastrar.setBackground(verdeClaro);
         cancelar.setBackground(vermelhoClaro);
-        
+
         // Adicionando uma fonte
         Font fonteBotoes = new Font("Arial", Font.BOLD, 18);
         cadastrar.setFont(fonteBotoes);
