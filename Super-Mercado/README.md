@@ -46,21 +46,25 @@
 
     - `Excluí-los`
   
-## Cadastrar Clients
+## Cadastrar Clientes
 
     Aqui você poderá cadastrar novos clientes(VIP). É bem simples
     apenas alguns dados e pronto:
 
-    - `Nome do cliente`
-    - `Email do cliente`
-    - `Cpf do cliente`
-    - `Endereço do cliente`
+    - Nome do cliente
+    - Email do cliente
+    - Cpf do cliente
+    - Endereço do cliente
 
 ## Fechar Caixa
 
-    Aqui no final de seu expediente. Você fechará o caixa, deixando claro o dia e horário que esta sendo feito essa ação. Ja sendo calculado o valor total de vendas porem, somente dos produtos que foram lançados como venda. Após contar a quantia que tem em seu caixa, valor passados em débitos/crétido, poderá ver se o caixa esta batento. Se não estiver batendo algo esta errado.
+    Aqui no final de seu expediente. Você fechará o caixa, deixando claro o dia e horário que esta sendo feito essa ação. Ja sendo calculado o valor
+    total de vendas porem, somente dos produtos que foram lançados como venda. Após contar a quantia que tem em seu caixa, valor passados em débitos/crétido,
+    poderá ver se o caixa esta batento. Se não estiver batendo algo esta errado.
 
-    EXEMPLO: Aqui vemos uma situação boa, aonde o caixa bate. Onde o lucro bruto é o valor calculado dos produtos lançados como venda. No caixa, é o total de dinheiro que foi acumulado durante as vendas.Débito/Crédito vemos o total passado em cartões. Sendo que a soma de caixa/cartões tem que ser igual ao lucro bruto.
+    EXEMPLO: Aqui vemos uma situação boa, aonde o caixa bate. Onde o lucro bruto é o valor calculado dos produtos lançados como venda. No caixa,
+    é o total de dinheiro que foi acumulado durante as vendas.Débito/Crédito vemos o total passado em cartões. Sendo que a soma de caixa/cartões tem que ser
+    igual ao lucro bruto.
 
     Lucro bruto: R$ 1.500,00 
     No caixa: R$ 1.000,00
@@ -75,13 +79,15 @@
     Crédito: R$ 100,00
 
     Pode acontecer também prejuízo oculto:
-     - `Vendas cobradas de forma correta, porém não foram lançadas`
-     - `Prejuízo oculto, acabam sendo descobertos apenas no balanço final, quando são apresentados os lucros e prejuízos, e nada pode mais pode ser feito. Imagine você, sofrendo seguidos prejuízo sem se dar conta, sem a capacidade de agir, justamente por desconhecer o problema.`
+     - Vendas cobradas de forma correta, porém não foram lançadas
+     - Prejuízo oculto, acabam sendo descobertos apenas no balanço final, quando são apresentados os lucros e prejuízos, e nada pode mais pode ser feito. Imagine você,
+     sofrendo seguidos prejuízo sem se dar conta, sem a capacidade de agir, justamente por desconhecer o problema.
 
 ## Abrir Caixa
     
     Aqui você iniciará o seu expediente. Conferindo apenas o total em caixa(troco), débito/crédito não é necessário conferir pois você ja tera feito isso enquanto fechava o seu caixa.
 
-    EXEMPLO: Você fechou o caixa com 1.500,00 como vimos anteriormente, porém você deixou R$ 200,00 para troco ou seja, foram retirados R$ 1.300,00. É bom sempre deixar isso na risca para ter o controle de seus lucros e perdas.
+    EXEMPLO: Você fechou o caixa com 1.500,00 como vimos anteriormente, porém você deixou R$ 200,00 para troco ou seja, foram retirados R$ 1.300,00. É bom sempre
+    deixar isso na risca para ter o controle de seus lucros e perdas.
 
     
