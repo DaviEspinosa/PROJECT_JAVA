@@ -9,10 +9,9 @@ public class Clientes {
  
 
     //construtor
-    public Clientes(String cpf, String email, String senha, String telefone, String endereco) {
+    public Clientes(String cpf, String email, String telefone, String endereco) {
         this.cpf = cpf;
         this.email = email;
-  
         this.telefone = telefone;
 
     }
