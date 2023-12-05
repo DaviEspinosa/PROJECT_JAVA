@@ -28,14 +28,12 @@ public class JanelaFechamentoCaixa extends JPanel {
     private JPanel acoesFechamentoCaixa;
     private JPanel container;
     private Color transparente = new Color(0, 0, 0, 0);
-    private Color cinza = new Color(128, 128, 128);
-    private Color cinzaClaro = new Color(217, 217, 217);
     private Color branca = new Color(255, 255, 255);
-    private Color verdeClaro = new Color(223, 250, 215);
+    private Color verdeClaro = new Color(49, 201, 94);
     private Color vermelhoClaro = new Color(250, 215, 215);
 
     public JanelaFechamentoCaixa() {
-        this.setBackground(cinza);
+        this.setBackground(verdeClaro);
         invisivel = new JPanel();
         invisivel.setLayout(new BorderLayout());
         invisivel.setBackground(transparente);

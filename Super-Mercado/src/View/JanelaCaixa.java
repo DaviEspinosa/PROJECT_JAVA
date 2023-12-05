@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import javax.swing.JTextField;
 
 public class JanelaCaixa extends JPanel {
-    private Color cinza = new Color(128, 128, 128);
+    private Color verdeClaro = new Color(49, 201, 94);
     private JPanel informacoesVenda;// Total, compras, desconto aplicado, quantidade;
     private JTextField codigoBarras;
     private JTextField quantidade;
@@ -24,7 +24,7 @@ public class JanelaCaixa extends JPanel {
 
     public JanelaCaixa() {
         // Cor de fundo da janela
-        this.setBackground(cinza);
+        this.setBackground(verdeClaro);
         this.setSize(600, 400);
 
         // Instanciando os TextField

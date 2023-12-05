@@ -4,8 +4,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
-public class JanelaCadastrarClientesControll {
+public class ClientesVipControll {
 
+    // PlaceHolder
    public JTextField createTextFieldWithPlaceholder(String placeholder) {
         JTextField textField = new JTextField(placeholder);
         textField.addFocusListener(new FocusListener() {

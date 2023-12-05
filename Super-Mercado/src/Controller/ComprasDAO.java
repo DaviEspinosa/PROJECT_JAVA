@@ -1,5 +1,5 @@
 package Controller;
 
-public class CamprasDAO {
+public class ComprasDAO {
     
 }

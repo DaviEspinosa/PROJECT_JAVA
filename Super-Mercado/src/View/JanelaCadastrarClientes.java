@@ -1,6 +1,6 @@
 package View;
 
-import Controller.JanelaCadastrarClientesControll;
+import Controller.ClientesVipControll;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -24,16 +24,16 @@ public class JanelaCadastrarClientes extends JPanel {
     private JPanel invisivel;
     private JButton cadastrar, cancelar;
     private Color transparente = new Color(0, 0, 0, 0);
-    private Color cinza = new Color(128, 128, 128);
+
     private Color cinzaClaro = new Color(217, 217, 217);
     private Color branca = new Color(255, 255, 255);
-    private Color verdeClaro = new Color(223, 250, 215);
+    private Color verdeClaro = new Color(49, 201, 94);
     private Color vermelhoClaro = new Color(250, 215, 215);
 
     // Construtor
     public JanelaCadastrarClientes() {
         // Adicionando uma cor
-        this.setBackground(cinza);
+        this.setBackground(verdeClaro);
 
         // Instanciando o painel invisivel para deixar o container no centro da tela
         invisivel = new JPanel();
@@ -43,7 +43,7 @@ public class JanelaCadastrarClientes extends JPanel {
         this.add(invisivel, BorderLayout.NORTH);
 
         // Instanciando o controlador da janela
-        JanelaCadastrarClientesControll controlador = new JanelaCadastrarClientesControll();
+        ClientesVipControll controlador = new ClientesVipControll();
         // Adicionando título
 
         // Instanciando os campos de entarda de dados

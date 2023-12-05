@@ -7,16 +7,16 @@ import java.awt.Insets;
 
 import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
-public class JanelaPrincipalControll extends BasicTabbedPaneUI {
+public class PrincipalControll extends BasicTabbedPaneUI {
     private Color azul = new Color(117, 190, 250);
-    private static final int ARC_SIZE = 16;
+    private static final int ARC_SIZE = 10;
 
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        tabAreaInsets.right = ARC_SIZE;
-        selectedTabPadInsets = new Insets(0, 0, 0, ARC_SIZE);
-        contentBorderInsets = new Insets(0, 0, 0, ARC_SIZE);
+        tabAreaInsets.top = ARC_SIZE;
+        selectedTabPadInsets = new Insets(ARC_SIZE, 0, 0, 0);
+        contentBorderInsets = new Insets(ARC_SIZE, 0, 0, 0);
     }
 
     @Override
