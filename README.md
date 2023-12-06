@@ -46,7 +46,7 @@
 
     - Excluí-los
   
-## Cadastrar Clients
+## Cadastrar Clientes
 
     Aqui você poderá cadastrar novos clientes(VIP). É bem simples
     apenas alguns dados e pronto:
