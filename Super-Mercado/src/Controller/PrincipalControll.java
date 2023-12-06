@@ -9,14 +9,15 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 public class PrincipalControll extends BasicTabbedPaneUI {
     private Color azul = new Color(117, 190, 250);
+    private Color black = new Color(00, 00, 00);
     private static final int ARC_SIZE = 10;
 
     @Override
     protected void installDefaults() {
         super.installDefaults();
-        tabAreaInsets.top = ARC_SIZE;
-        selectedTabPadInsets = new Insets(ARC_SIZE, 0, 0, 0);
-        contentBorderInsets = new Insets(ARC_SIZE, 0, 0, 0);
+        tabAreaInsets.top = 15;
+        selectedTabPadInsets = new Insets(10, 0, 0, 0);
+        contentBorderInsets = new Insets(0, 0, 0, 0);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class PrincipalControll extends BasicTabbedPaneUI {
         // Preenchimento do fundo da aba selecionada
         if (isSelect) {
             graphics2d.setColor(azul);
-            graphics2d.fillRoundRect(x, y, w, h, ARC_SIZE, ARC_SIZE);
+            graphics2d.fillRoundRect(x, y, w, h, ARC_SIZE, ARC_SIZE );
 
             graphics2d.dispose();
         }
