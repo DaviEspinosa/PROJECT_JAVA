@@ -46,6 +46,7 @@ public class JanelaCaixa extends JPanel {
         descontoAplicado = new JTextField(30);
         total = new JTextField(30);
 
+
         // Instanciando os paineis dos TextField
         codigoBarrasPanel = new JPanel(new BorderLayout());
         clientesPanel = new JPanel(new BorderLayout());
@@ -59,6 +60,7 @@ public class JanelaCaixa extends JPanel {
         descontoLabel = new JLabel("DESCONTO APLICADO");
         totalLabel = new JLabel("TOTAL");
         quantidadeLabel = new JLabel("QUANTIDADE");
+
 
         // Instanciando os painéis e definindo os layout
         informacoesVenda = new JPanel();
@@ -78,6 +80,7 @@ public class JanelaCaixa extends JPanel {
         excluir = new JButton("EXCLUIR");
 
         // Definindo uma cor para eles
+        //Definindo uma cor para eles
         finalizarCompra.setBackground(verdeClaro);
         excluir.setBackground(vermelhoClaro);
 

@@ -44,7 +44,7 @@ public class JanelaPrincipal extends JFrame{
         JTPane.add("FECHAR CAIXA", tab6);
 
         //Tamanho da janela
-        setBounds(100, 100, 1200, 900);
+        setBounds(0, 0, 1200, 900);
     }
     public void run(){
         this.setVisible(true);
