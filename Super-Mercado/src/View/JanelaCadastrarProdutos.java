@@ -98,7 +98,7 @@ public class JanelaCadastrarProdutos extends JPanel {
         JPanel vazioLeste = new JPanel();
         JPanel vazioSul = new JPanel();
 
-             vazioNorte.setPreferredSize(new Dimension(00, 500));
+        vazioNorte.setPreferredSize(new Dimension(00, 700));
 
 
         // Painel dentro do Principal
@@ -151,20 +151,6 @@ public class JanelaCadastrarProdutos extends JPanel {
         this.add(vazioLeste, BorderLayout.EAST);
         this.add(vazioSul, BorderLayout.SOUTH);
 
-
-        //         JPanel painelComBackground = new JPanel() {
-        //     @Override
-        //     protected void paintComponent(Graphics g) {
-        //         super.paintComponent(g);
-
-        //         // Carregue a imagem do arquivo (ajuste o caminho conforme necessário)
-        //         ImageIcon imagemDeFundo = new ImageIcon("./../../assets");
-
-        //         // Desenhe a imagem como background
-        //         g.drawImage(imagemDeFundo.getImage(), 0, 0, getWidth(), getHeight(), this);
-        //     }
-        // };
-  
 
     }
 }
