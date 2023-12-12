@@ -9,7 +9,6 @@ import javax.swing.plaf.basic.BasicTabbedPaneUI;
 
 public class PrincipalControll extends BasicTabbedPaneUI {
     private Color azul = new Color(117, 190, 250);
-    private Color black = new Color(00, 00, 00);
     private static final int ARC_SIZE = 10;
 
     @Override
