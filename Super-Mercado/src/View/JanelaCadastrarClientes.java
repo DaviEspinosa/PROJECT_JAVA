@@ -1,13 +1,15 @@
 package View;
 
 import Controller.ClientesVipControll;
+import javafx.scene.layout.Background;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -15,108 +17,70 @@ import javax.swing.JTextField;
 
 public class JanelaCadastrarClientes extends JPanel {
 
-    private JTextField nome;
-    private JTextField email;
-    private JTextField cpf;
-    private JTextField endereco;
-    private JPanel cadastro;
-    private JPanel acoesCadastro;
-    private JPanel invisivel;
-    private JButton cadastrar, cancelar;
-    private Color transparente = new Color(0, 0, 0, 0);
-
-    private Color cinzaClaro = new Color(217, 217, 217);
-    private Color branca = new Color(255, 255, 255);
     private Color verdeClaro = new Color(49, 201, 94);
-    private Color vermelhoClaro = new Color(250, 215, 215);
+    private Color vermelhoClaro = new Color(199, 59, 59);
 
-    // Construtor
     public JanelaCadastrarClientes() {
-        // Adicionando uma cor
-        this.setBackground(verdeClaro);
+        
+        ClientesVipControll ClientesControll = new ClientesVipControll();
 
-        // Instanciando o painel invisivel para deixar o container no centro da tela
-        invisivel = new JPanel();
-        invisivel.setLayout(new BorderLayout());
-        invisivel.setBackground(transparente);
-        invisivel.setPreferredSize(new Dimension(1400, 200));
-        this.add(invisivel, BorderLayout.NORTH);
+        JPanel painelPrincipal = new JPanel(new GridLayout(2, 0));
+        JPanel vazioNorte = new JPanel();
+        vazioNorte.setPreferredSize(new Dimension(00, 700));
 
-        // Instanciando o controlador da janela
-        ClientesVipControll controlador = new ClientesVipControll();
-        // Adicionando título
 
-        // Instanciando os campos de entarda de dados
-        nome = new JTextField();
-        email = new JTextField();
-        cpf = new JTextField();
-        endereco = new JTextField();
+        // Painel dentro do Principal
+        JPanel painelTop = new JPanel(new GridLayout(0, 2));
+        JPanel painelBottom = new JPanel();
 
-        nome = controlador.createTextFieldWithPlaceholder("Nome");
-        email = controlador.createTextFieldWithPlaceholder("Email");
-        cpf = controlador.createTextFieldWithPlaceholder("Cpf");
-        endereco = controlador.createTextFieldWithPlaceholder("Endereço");
+        // add ao painelPrincipal
+        painelPrincipal.add(painelTop);
+        painelPrincipal.add(painelBottom);
+        painelPrincipal.setBorder(BorderFactory.createLineBorder(new Color(28, 97, 70), 20));
 
-        // Adicionando cores
-        nome.setBackground(cinzaClaro);
-        email.setBackground(cinzaClaro);
-        cpf.setBackground(cinzaClaro);
-        endereco.setBackground(cinzaClaro);
+        // ----====Painel Top====----
+        JPanel painelDados = new JPanel();
+        JTextField exibirErros = new JTextField(200);
+        exibirErros.setBackground(new Color(175, 179, 177));
+        painelTop.setPreferredSize(new Dimension(500, 200));
+        painelTop.add(painelDados);
+        painelTop.add(exibirErros);
 
-        // Adicionando um tamanho para eles
-        nome.setPreferredSize(new Dimension(100, 20));
-        email.setPreferredSize(new Dimension(100, 20));
-        cpf.setPreferredSize(new Dimension(100, 20));
-        endereco.setPreferredSize(new Dimension(100, 20));
+        // Dentro de Painel Dados
+        JTextField InputUserName = new JTextField(20);
+        InputUserName = ClientesControll.createTextFieldWithPlaceholder("Nome:");
+        JTextField InputEmail = new JTextField(20);
+        InputEmail = ClientesControll.createTextFieldWithPlaceholder("E-mail:");
+        JTextField InputCpf = new JTextField(20);
+        InputCpf = ClientesControll.createTextFieldWithPlaceholder("Cpf:");
+        JTextField InputEndereco = new JTextField(20);
+        InputEndereco = ClientesControll.createTextFieldWithPlaceholder("Endereço:");
+        painelDados.setLayout(new BoxLayout(painelDados, BoxLayout.Y_AXIS));
+        painelDados.add(InputUserName);
+        painelDados.add(InputEmail);
+        painelDados.add(InputCpf);
+        painelDados.add(InputEndereco);
 
-        // Adicionando uma fonte para eles
-        Font fonteTextField = new Font("Arial", Font.BOLD, 18);
-        nome.setFont(fonteTextField);
-        email.setFont(fonteTextField);
-        cpf.setFont(fonteTextField);
-        endereco.setFont(fonteTextField);
+        // Dentro de Painel Ações
+        JPanel painelAcoes = new JPanel();
+        JButton cadastrarButton = new JButton("Cadastrar");
+        JButton cancelarButton = new JButton("Cancelar");
+        painelAcoes.add(cadastrarButton);
+        painelAcoes.add(cancelarButton);
+        cadastrarButton.setBackground(verdeClaro);
+        cancelarButton.setBackground(vermelhoClaro);
 
-        // Instanciando o painel cadastro
-        cadastro = new JPanel();
-        cadastro.setLayout(new BoxLayout(cadastro, BoxLayout.Y_AXIS));
-        cadastro.setBackground(branca);
-        cadastro.setPreferredSize(new Dimension(700, 400));
+        // ----====Painel Bottom====----
+        painelBottom.setPreferredSize(new Dimension(200, 50));
+        painelBottom.setLayout(new BoxLayout(painelBottom, BoxLayout.Y_AXIS));
+        painelBottom.add(painelAcoes);
 
-        // Adicionando ao painel cadastro
-        cadastro.add(nome);
-        cadastro.add(email);
-        cadastro.add(cpf);
-        cadastro.add(endereco);
 
-        // Instanciando o painel acoesCadastro
-        acoesCadastro = new JPanel();
-        acoesCadastro.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        acoesCadastro.setBackground(cinzaClaro);
-
-        // Instanciando os botões(cadastrar, excluir)
-        cadastrar = new JButton("Cadastrar");
-        cancelar = new JButton("Cancelar");
-
-        // Adicionando cores
-        cadastrar.setBackground(verdeClaro);
-        cancelar.setBackground(vermelhoClaro);
-
-        // Adicionando uma fonte
-        Font fonteBotoes = new Font("Arial", Font.BOLD, 18);
-        cadastrar.setFont(fonteBotoes);
-        cancelar.setFont(fonteBotoes);
-
-        // Adicionando ao painel acoesCadastro
-        acoesCadastro.add(cadastrar);
-        acoesCadastro.add(cancelar);
-
-        // Adicionando ao painel principal usando um container
-        JPanel container = new JPanel(new BorderLayout());
-        container.setBackground(cinzaClaro);
-        container.add(cadastro, BorderLayout.CENTER);
-        container.add(acoesCadastro, BorderLayout.EAST);
-        container.setBounds(100, 200, 600, 600);
-        add(invisivel);
-        add(container);
+        this.add(vazioNorte, BorderLayout.NORTH);
+        this.add(painelPrincipal, BorderLayout.CENTER);
+        this.setBackground(new Color(17, 68, 48));
     }
-}
+           
+
+
+    }

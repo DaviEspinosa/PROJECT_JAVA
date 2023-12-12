@@ -45,6 +45,7 @@ public class JanelaPrincipal extends JFrame{
 
         //Tamanho da janela
         setBounds(0, 0, 1200, 900);
+
     }
     public void run(){
         this.setVisible(true);
