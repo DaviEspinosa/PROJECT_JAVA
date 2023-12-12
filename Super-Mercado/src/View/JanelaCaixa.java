@@ -1,19 +1,25 @@
 package View;
 
-import javax.swing.BoxLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 public class JanelaCaixa extends JPanel {
     private Color verdeClaro = new Color(49, 201, 94);
+    private Color verdeCreme = new Color(68, 201, 82);
     private Color vermelhoClaro = new Color(199, 59, 59);
+    private Color branca = new Color(255, 255, 255);
+    private Color transparente = new Color(0, 0, 0, 0);
     private JPanel informacoesVenda; // Total, compras, desconto aplicado, quantidade;
+    private JPanel invisivel;
     private JPanel acoesInformacoesVenda;
     private JPanel painelFinalizarCompras;
     private JPanel container;
@@ -37,7 +43,13 @@ public class JanelaCaixa extends JPanel {
     public JanelaCaixa() {
         // Cor de fundo da janela
         this.setBackground(verdeClaro);
-        this.setSize(600, 400);
+
+         // Instanciando o painel invisivel para deixar o container no centro da tela
+         invisivel = new JPanel();
+         invisivel.setLayout(new BorderLayout());
+         invisivel.setBackground(transparente);
+         invisivel.setPreferredSize(new Dimension(1400, 150));
+         this.add(invisivel, BorderLayout.NORTH);
 
         // Instanciando os TextField
         codigoBarras = new JTextField(30);
@@ -45,6 +57,13 @@ public class JanelaCaixa extends JPanel {
         cliente = new JTextField(30);
         descontoAplicado = new JTextField(30);
         total = new JTextField(30);
+
+        //Definindo uma cor para as bordas
+        codigoBarras.setBorder(BorderFactory.createLineBorder(branca));
+        quantidade.setBorder(BorderFactory.createLineBorder(branca));
+        cliente.setBorder(BorderFactory.createLineBorder(branca));
+        descontoAplicado.setBorder(BorderFactory.createLineBorder(branca));
+        total.setBorder(BorderFactory.createLineBorder(branca));
 
 
         // Instanciando os paineis dos TextField
@@ -55,16 +74,34 @@ public class JanelaCaixa extends JPanel {
         quantidadePanel = new JPanel(new BorderLayout());
 
         // Instanciando os labels dos TextField
-        codigoBarrasLabel = new JLabel("CÓDIGO BARRAS");
-        clientesLabel = new JLabel("CLIENTES");
-        descontoLabel = new JLabel("DESCONTO APLICADO");
-        totalLabel = new JLabel("TOTAL");
-        quantidadeLabel = new JLabel("QUANTIDADE");
+        codigoBarrasLabel = new JLabel("CÓDIGO BARRAS:  ");
+        clientesLabel = new JLabel("CLIENTES:    ");
+        descontoLabel = new JLabel("DESCONTO APLICADO:  ");
+        totalLabel = new JLabel("TOTAL:       ");
+        quantidadeLabel = new JLabel("QUANTIDADE:   ");
 
+        //Configurando os TextField
+        codigoBarrasPanel.add(codigoBarrasLabel, BorderLayout.WEST);
+        codigoBarrasPanel.add(codigoBarras, BorderLayout.CENTER);
+        quantidadePanel.add(quantidadeLabel, BorderLayout.WEST);
+        quantidadePanel.add(quantidade, BorderLayout.CENTER);
+        clientesPanel.add(clientesLabel, BorderLayout.WEST);
+        clientesPanel.add(cliente, BorderLayout.CENTER);
+        descontoPanel.add(descontoLabel, BorderLayout.WEST);
+        descontoPanel.add(descontoAplicado, BorderLayout.CENTER);
+        totalPanel.add(totalLabel, BorderLayout.WEST);
+        totalPanel.add(total, BorderLayout.CENTER);
+
+        //Definindo uma cor para eles
+        codigoBarrasPanel.setBackground(branca);
+        quantidadePanel.setBackground(branca);
+        clientesPanel.setBackground(branca);
+        descontoPanel.setBackground(branca);
+        totalPanel.setBackground(branca);
 
         // Instanciando os painéis e definindo os layout
         informacoesVenda = new JPanel();
-        informacoesVenda.setLayout(new BoxLayout(informacoesVenda, BoxLayout.Y_AXIS));
+        informacoesVenda.setLayout(new GridLayout(0,1,0,10));
         acoesInformacoesVenda = new JPanel();
         acoesInformacoesVenda.setLayout(new BorderLayout());
         painelFinalizarCompras = new JPanel();
@@ -79,17 +116,20 @@ public class JanelaCaixa extends JPanel {
         finalizarCompra = new JButton("FINALIZAR COMPRA");
         excluir = new JButton("EXCLUIR");
 
-        // Definindo uma cor para eles
         //Definindo uma cor para eles
         finalizarCompra.setBackground(verdeClaro);
         excluir.setBackground(vermelhoClaro);
 
+        //Definindo uma borda para eles
+        finalizarCompra.setBorder(BorderFactory.createLineBorder(verdeCreme));
+        finalizarCompra.setPreferredSize(new Dimension(200,60));
+
         // Adicionando os TextField ao painel informacoesVenda
-        informacoesVenda.add(codigoBarras);
-        informacoesVenda.add(cliente);
-        informacoesVenda.add(descontoAplicado);
-        informacoesVenda.add(total);
-        informacoesVenda.add(quantidade);
+        informacoesVenda.add(codigoBarrasPanel);
+        informacoesVenda.add(clientesPanel);
+        informacoesVenda.add(descontoPanel);
+        informacoesVenda.add(totalPanel);
+        informacoesVenda.add(quantidadePanel);
         informacoesVenda.add(painelFinalizarCompras);
 
         // Adicionando o botão finalizarCompra ao seu painel
