@@ -1,12 +1,12 @@
 
-// package App;
+package App;
 
-// import View.JanelaVendas;
+import View.JanelaVendas;
 
-// import View.JanelaPrincipal;
+import View.JanelaPrincipal;
 
-// public class App {
-//     public static void main(String[] args) throws Exception {
-//         new JanelaPrincipal().run();
-//     }
-// }
+public class App {
+    public static void main(String[] args) throws Exception {
+        new JanelaPrincipal().run();
+    }
+}
