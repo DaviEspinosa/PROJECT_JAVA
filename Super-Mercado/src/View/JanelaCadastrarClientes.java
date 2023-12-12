@@ -1,7 +1,7 @@
 package View;
 
 import Controller.ClientesVipControll;
-import javafx.scene.layout.Background;
+import DAO.ClientesVipDAO;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -21,7 +21,7 @@ public class JanelaCadastrarClientes extends JPanel {
     private Color vermelhoClaro = new Color(199, 59, 59);
 
     public JanelaCadastrarClientes() {
-        
+        // new ClientesVipDAO().criarTabelaCliente();
         ClientesVipControll ClientesControll = new ClientesVipControll();
 
         JPanel painelPrincipal = new JPanel(new GridLayout(2, 0));
