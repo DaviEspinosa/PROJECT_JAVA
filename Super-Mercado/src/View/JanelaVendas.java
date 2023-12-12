@@ -1,10 +1,12 @@
 package View;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JList;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,13 +14,15 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
-public class JanelaCaixa extends JPanel {
+public class JanelaVendas extends JPanel {
     private Color verdeClaro = new Color(49, 201, 94);
     private Color verdeCreme = new Color(68, 201, 82);
     private Color vermelhoClaro = new Color(199, 59, 59);
     private Color branca = new Color(255, 255, 255);
     private Color transparente = new Color(0, 0, 0, 0);
-    private JPanel informacoesVenda; // Total, compras, desconto aplicado, quantidade;
+    private DefaultListModel<String> listaComprasModel;
+    private JList<String> listCompras;
+    private JPanel informacoesVenda;
     private JPanel invisivel;
     private JPanel acoesInformacoesVenda;
     private JPanel painelFinalizarCompras;
@@ -40,7 +44,9 @@ public class JanelaCaixa extends JPanel {
     private JTextField total;
     private JButton finalizarCompra, excluir;
 
-    public JanelaCaixa() {
+    public JanelaVendas() {
+        listaComprasModel = new DefaultListModel<>();
+        listCompras = new JList<>(listaComprasModel);
         // Cor de fundo da janela
         this.setBackground(verdeClaro);
 
@@ -127,9 +133,9 @@ public class JanelaCaixa extends JPanel {
         // Adicionando os TextField ao painel informacoesVenda
         informacoesVenda.add(codigoBarrasPanel);
         informacoesVenda.add(clientesPanel);
+        informacoesVenda.add(quantidadePanel);
         informacoesVenda.add(descontoPanel);
         informacoesVenda.add(totalPanel);
-        informacoesVenda.add(quantidadePanel);
         informacoesVenda.add(painelFinalizarCompras);
 
         // Adicionando o botão finalizarCompra ao seu painel
@@ -141,6 +147,7 @@ public class JanelaCaixa extends JPanel {
 
         // Adicionando ao painel acoesInformacoesVenda
         acoesInformacoesVenda.add(excluir, BorderLayout.NORTH);
+        acoesInformacoesVenda.add(listCompras, BorderLayout.CENTER);
 
         // Adicionando ao painel principal usando um container
         container.add(informacoesVenda, BorderLayout.WEST);

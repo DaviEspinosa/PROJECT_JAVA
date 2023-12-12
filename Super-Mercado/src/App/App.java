@@ -1,7 +1,7 @@
 
 package App;
 
-import View.JanelaCaixa;
+import View.JanelaVendas;
 
 import View.JanelaPrincipal;
 

@@ -20,7 +20,7 @@ public class JanelaPrincipal extends JFrame{
 
         //Adicionando as tabs
         //Janela Caixa
-        JanelaCaixa tab1 = new JanelaCaixa();
+        JanelaVendas tab1 = new JanelaVendas();
         JTPane.add("CAIXA", tab1);
 
         //Janela Produto(estoque)
