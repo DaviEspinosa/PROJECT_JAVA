@@ -27,13 +27,13 @@ public class ClientesVipDAO {
     /* Métodos aqui */
 
     public void criarTabelaCliente() {
-        String sqlCriarTabelaCliente = "CREATE TABLE IF NOT EXISTS clientes_mercado (CPF VARCHAR(11) PRIMARY KEY NOT NULL, TELEFONE VARCHAR(255), EMAIL VARCHAR(255), ENDERECO VARCHAR(255))";
+        String sqlCriarTabelaCliente = "CREATE TABLE IF NOT EXISTS clientes_mercados (CPF VARCHAR(11), TELEFONE VARCHAR(255), EMAIL VARCHAR(255), ENDERECO VARCHAR(255))";
 
         try (Statement stmt = this.connection.createStatement()) {
 
             /* Ejetor de código SQL */
             stmt.execute(sqlCriarTabelaCliente);
-            System.out.println("Tabela 'clientes_mercado' criada com sucesso.");
+            System.out.println("Tabela 'clientes_mercados' criada com sucesso.");
         } catch (SQLException e) {
 
             throw new RuntimeException("Erro ao criar a tabela 'clients-mercado'.", e);
@@ -51,7 +51,7 @@ public class ClientesVipDAO {
         clientes = new ArrayList<>();
 
         try {
-            stmt = this.connection.prepareStatement("SELECT * FROM clientes_mercado");
+            stmt = this.connection.prepareStatement("SELECT * FROM clientes_mercados");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -79,7 +79,7 @@ public class ClientesVipDAO {
     public void cadastrarClientes(String cpf, String telefone, String email, String endereco) {
         PreparedStatement stmt = null;
 
-        String sqlCadastrarClientes = "INSERT INTO clientes_mercado (cpf, telefone, email, endereco) VALUES (?,?,?,?)";
+        String sqlCadastrarClientes = "INSERT INTO clientes_mercados (cpf, telefone, email, endereco) VALUES (?,?,?,?)";
 
         try {
             stmt = this.connection.prepareStatement(sqlCadastrarClientes);
@@ -92,8 +92,9 @@ public class ClientesVipDAO {
             stmt.setString(4, endereco);
 
             int linhasAfetadas = stmt.executeUpdate();
-            System.out.println(linhasAfetadas > 0 ? "Cliente cadastrado com sucesso"
-                    : "O cliente pode não ter sido cadastrado. Verifique se ele realmente foi cadastrado.");
+
+            System.out.println(linhasAfetadas > 0 ? "Cliente cadastrado com sucesso": "O cliente pode não ter sido cadastrado. Verifique se ele realmente foi cadastrado.");
+
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao cadastrar 'cliente'", e);
         } finally {
@@ -111,7 +112,7 @@ public class ClientesVipDAO {
     public void atualizarClientes(String cpf, String telefone, String email, String endereco) {
         PreparedStatement stmt = null;
 
-        String sqlAtualizarCliente = "UPDATE clientes_mercado SET telefone = ?, email = ?, endereco = ? WHERE cpf = ?";
+        String sqlAtualizarCliente = "UPDATE clientes_mercados SET telefone = ?, email = ?, endereco = ? WHERE cpf = ?";
 
         try {
             stmt = this.connection.prepareStatement(sqlAtualizarCliente);
@@ -142,7 +143,7 @@ public class ClientesVipDAO {
         String menssagem = "Deseja realmente apagar este cliente?";
         PreparedStatement stmt = null;
 
-        String apagarCliente = "DELETE FROM clientes_mercado WHERE cpf = ?";
+        String apagarCliente = "DELETE FROM clientes_mercados WHERE cpf = ?";
         try {
             int escolhaJOptionP = JOptionPane.showConfirmDialog(null, menssagem);
             if (escolhaJOptionP == JOptionPane.YES_OPTION) {

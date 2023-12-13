@@ -25,8 +25,8 @@ public class CadastrarProdutosDAO {
 
             //Criando Tabela Caso Não Exista
 
-            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado ( NOME VARCHAR(30),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGOBARRAS VARCHAR(255) PRIMARY KEY)";
-            try (Statement stmt = this.connection.createStatement()) {https://github.com/IgorOliverx/React_laravel.git
+            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercados ( NOME VARCHAR(30),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGOBARRAS VARCHAR(255))";
+            try (Statement stmt = this.connection.createStatement()) {
 
                 // Statement executando o sql para criar a tabela 
                 stmt.execute(sql);
@@ -45,7 +45,9 @@ public class CadastrarProdutosDAO {
     public void cadastrar(String nome, String preco, String quantidade, String codigoBarra) {
         PreparedStatement stmt = null;
         // Define a instrução para cadastrar na tabela
-        String sql = "INSERT INTO produtos_mercado (nome, preco, quantidade, codigo) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO produtos_mercados (nome, preco, quantidade, codigobarras) VALUES (?, ?, ?, ?)";
+
+        
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);
@@ -66,7 +68,7 @@ public class CadastrarProdutosDAO {
         public void atualizar(String nome, String preco, String quantidade, String codigoBarra) {
             PreparedStatement stmt = null;
             // Define a instrução para atualizar dados pela placa
-            String sql = "UPDATE carros_lojacarros SET nome = ?, preco = ?, quantidade = ? WHERE codigoBarra = ?";
+            String sql = "UPDATE produtos_mercados SET nome = ?, preco = ?, quantidade = ? WHERE codigoBarra = ?";
             try {
                 stmt = connection.prepareStatement(sql);
                 stmt.setString(1, nome);
@@ -88,21 +90,21 @@ public class CadastrarProdutosDAO {
     public List<Produtos> listarTodos() {
         PreparedStatement stmt = null; //objeto PreparedStatement para executar a consulta
         ResultSet rs = null; // objeto ResultSet para armazenar os resultados da consulta
-        produtos = new ArrayList<>(); // Cria uma lista para armazenar os carros recuperados do banco de dados
+        produtos = new ArrayList<>(); // Cria uma lista para armazenar os  recuperados do banco de dados
     
         try {
-            stmt = connection.prepareStatement("select * from produtos_mercado"); 
+            stmt = connection.prepareStatement("select * from produtos_mercados"); 
             // Prepara a consulta SQL para selecionar todos os registros da tabela
             rs = stmt.executeQuery(); 
             // Executa a consulta e armazena os resultados no ResultSet
             
             while (rs.next()) {
-                // Para cada registro no ResultSet, cria um objeto Carros com os valores do registro
+                // Para cada registro no ResultSet, cria um objeto com os valores do registro
                 Produtos produto = new Produtos(
                     rs.getString("nome"),
-                    rs.getString("preço"),
+                    rs.getString("preco"),
                     rs.getString("quantidade"),
-                    rs.getString("código")
+                    rs.getString("codigobarras")
                 );
                 produtos.add(produto); // Adiciona o objeto produto à lista de produtos
             }
@@ -112,6 +114,6 @@ public class CadastrarProdutosDAO {
 
             ConnectionFactory.closeConnection(connection, stmt, rs); // Fecha a conexão, o PreparedStatement e o ResultSet
         }
-        return produtos; // Retorna a lista de carros recuperados do banco de dados
+        return produtos; // Retorna a lista de recuperados do banco de dados
     }
 }

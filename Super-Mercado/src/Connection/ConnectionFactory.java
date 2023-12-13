@@ -12,7 +12,7 @@ public class ConnectionFactory {
    
     private static final String url = "jdbc:postgresql://localhost:5432/postgres";
     private static final String usuario = "postgres";
-    private static final String senha = "postgres1";
+    private static final String senha = "postgres";
 
  //----===SEMPRE LEMBRAR DE INSTALAR O DRIVER PARA NÃO OCORRER ERRO===----
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";

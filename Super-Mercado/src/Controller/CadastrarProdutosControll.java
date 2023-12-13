@@ -28,29 +28,28 @@ public class CadastrarProdutosControll {
         this.produtoList = produtoList;
         this.tableModel = tableModel;
         this.table = table;
-
     }
 
     // PlaceHolder
-    public JTextField createTextFieldWithPlaceholderProdutos(String placeholder) {
-        JTextField textFieldProdutos = new JTextField(placeholder);
-        textFieldProdutos.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textFieldProdutos.getText().equals(placeholder)) {
-                    textFieldProdutos.setText("");
-                }
-            }
+    // public JTextField createTextFieldWithPlaceholderProdutos(String placeholder) {
+    //     JTextField textFieldProdutos = new JTextField(placeholder);
+    //     textFieldProdutos.addFocusListener(new FocusListener() {
+    //         @Override
+    //         public void focusGained(FocusEvent e) {
+    //             if (textFieldProdutos.getText().equals(placeholder)) {
+    //                 textFieldProdutos.setText("");
+    //             }
+    //         }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textFieldProdutos.getText().isEmpty()) {
-                    textFieldProdutos.setText(placeholder);
-                }
-            }
-        });
-        return textFieldProdutos;
-    }
+    //         @Override
+    //         public void focusLost(FocusEvent e) {
+    //             if (textFieldProdutos.getText().isEmpty()) {
+    //                 textFieldProdutos.setText(placeholder);
+    //             }
+    //         }
+    //     });
+    //     return textFieldProdutos;
+    // }
 
     public void cadastrar(String nome, String preco, String quantidade, String codigoBarra) {
         new CadastrarProdutosDAO().cadastrar(nome, preco, quantidade, codigoBarra);
@@ -64,13 +63,16 @@ public class CadastrarProdutosControll {
         if (tableModel != null) {
             // Ao iniciar as linhas existentes irão sumir
             tableModel.setRowCount(0);
-            // puxa a lista de Carros do BD
+            // puxa a lista de Produtos do BD
             produtoList = new CadastrarProdutosDAO().listarTodos();
 
-            // ele vai colocar no TableModel os carros que estão no banco de dados
+            // ele vai colocar no TableModel os  que estão no banco de dados
             for (Produtos produtos : produtoList) {
-                tableModel.addRow(new Object[] { produtos.getNome(), produtos.getPreco(), produtos.getQuantidade(), produtos.getCodigoBarra() });
+                tableModel.addRow(new Object[] { produtos.getNome(), produtos.getPreco(), produtos.getQuantidade(),
+                        produtos.getCodigoBarra() });
             }
+
+
         }
         // Se tableModel não foi iniciado ele exibira uma menssagem
         else {
@@ -89,15 +91,9 @@ public class CadastrarProdutosControll {
         JTextField inputQuantidade = view.getInputQuantidadeTextField();
         JTextField inputCodBarras = view.getInputCodBarrasTextField();
         JTextField inputValor = view.getInputValorTextField();
-
-        // Validandi
-    if (inputNome.getText().equals("Produto:") || inputQuantidade.getText().equals("Quantidade:")
-    || inputCodBarras.getText().equals("Código:") || inputValor.getText().equals("Valor:")) {
-JOptionPane.showMessageDialog(view, "Preencha todos os campos antes de cadastrar um produto.",
-        "Campos Vazios", JOptionPane.WARNING_MESSAGE);
-return;
-}
-        cadastrarProdutosDAO.cadastrar(inputNome.getText(), inputValor.getText(), inputQuantidade.getText(), inputCodBarras.getText());
+       
+        cadastrarProdutosDAO.cadastrar(inputNome.getText(), inputValor.getText(), inputQuantidade.getText(),
+                inputCodBarras.getText());
 
         limparCampos();
     }

@@ -10,29 +10,30 @@ import Model.Clientes;
 
 public class ClientesVipControll {
 
-    // PlaceHolder
-    public JTextField createTextFieldWithPlaceholder(String placeholder) {
-        JTextField textField = new JTextField(placeholder);
-        textField.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (textField.getText().equals(placeholder)) {
-                    textField.setText("");
-                }
-            }
+    // // PlaceHolder
+    // public JTextField createTextFieldWithPlaceholder(String placeholder) {
+    //     JTextField textField = new JTextField(placeholder);
+    //     textField.addFocusListener(new FocusListener() {
+    //         @Override
+    //         public void focusGained(FocusEvent e) {
+    //             if (textField.getText().equals(placeholder)) {
+    //                 textField.setText("");
+    //             }
+    //         }
 
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (textField.getText().isEmpty()) {
-                    textField.setText(placeholder);
-                }
-            }
-        });
-        return textField;
-    }
+    //         @Override
+    //         public void focusLost(FocusEvent e) {
+    //             if (textField.getText().isEmpty()) {
+    //                 textField.setText(placeholder);
+    //             }
+    //         }
+    //     });
+    //     return textField;
+    // }
 
     // Cadastrar clientes
     public void cadastrarCliente(String cpf, String telefone, String email, String endereco) {
+        
         new ClientesVipDAO().cadastrarClientes(cpf, telefone, email, endereco);
     }
 

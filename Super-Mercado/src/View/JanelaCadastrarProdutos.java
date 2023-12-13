@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -14,6 +16,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
+import javax.swing.JLabel;
 
 import Controller.CadastrarProdutosControll;
 import DAO.CadastrarProdutosDAO;
@@ -25,6 +29,10 @@ public class JanelaCadastrarProdutos extends JPanel {
     private List<Produtos> produtos;
     private JTable table;
     private DefaultTableModel tableModel;
+    private JLabel labelNome;
+    private JLabel labelValor;
+    private JLabel labelQuantidade;
+    private JLabel labelCodBarras;
     private JTextField inputNome;
     private JTextField inputQuantidade;
     private JTextField inputCodBarras;
@@ -59,17 +67,32 @@ public class JanelaCadastrarProdutos extends JPanel {
         painelTop.add(painelAcoes);
 
         // Dentro de Painel Dados
-
+        labelNome = new JLabel("Nome:");
+        labelQuantidade = new JLabel("Quantidade:");
+        labelCodBarras = new JLabel("Código:");
+        labelValor = new JLabel("Preço:");
+        inputNome = new JTextField(10);
+        inputQuantidade = new JTextField(10);
+        inputCodBarras = new JTextField(10);
+        inputValor = new JTextField(10);
         // inputs com placeholder (método dentro de produtosControll)
-        inputNome = produtosControll.createTextFieldWithPlaceholderProdutos("Produto:");
-        inputQuantidade = produtosControll.createTextFieldWithPlaceholderProdutos("Quantidade:");
-        inputCodBarras = produtosControll.createTextFieldWithPlaceholderProdutos("Código:");
-        inputValor = produtosControll.createTextFieldWithPlaceholderProdutos("Valor:");
+        // inputNome =
+        // produtosControll.createTextFieldWithPlaceholderProdutos("Produto:");
+        // inputQuantidade =
+        // produtosControll.createTextFieldWithPlaceholderProdutos("Quantidade:");
+        // inputCodBarras =
+        // produtosControll.createTextFieldWithPlaceholderProdutos("Código:");
+        // inputValor =
+        // produtosControll.createTextFieldWithPlaceholderProdutos("Valor:");
 
         painelDados.setLayout(new BoxLayout(painelDados, BoxLayout.Y_AXIS));
+        painelDados.add(labelNome);
         painelDados.add(inputNome);
+        painelDados.add(labelQuantidade);
         painelDados.add(inputQuantidade);
+        painelDados.add(labelCodBarras);
         painelDados.add(inputCodBarras);
+        painelDados.add(labelValor);
         painelDados.add(inputValor);
 
         // Dentro de Painel Ações
@@ -93,10 +116,43 @@ public class JanelaCadastrarProdutos extends JPanel {
         table = new JTable(tableModel);
         jSPane.setViewportView(table);
         new CadastrarProdutosDAO().criarTabela();
+        atualizarTabela();
+
+        // Tratamento de eventos
+        cadastrarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                produtosControll.cadastrar(inputNome.getText(), inputValor.getText(), inputQuantidade.getText(),
+                        inputCodBarras.getText());
+
+                if (inputNome.getText().isEmpty() || inputValor.getText().isEmpty()
+                        || inputQuantidade.getText().isEmpty() || inputCodBarras.getText().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "Preencha todos os campos corretamente");
+
+                    return;
+                }
+
+                inputNome.setText("");
+                inputValor.setText("");
+                inputQuantidade.setText("");
+                inputCodBarras.setText("");
+            }
+        });
 
         this.add(painelNorte, BorderLayout.NORTH);
         this.add(painelPrincipal, BorderLayout.CENTER);
         this.setBackground(new Color(17, 68, 48));
+    }
+
+    private void atualizarTabela() {
+        tableModel.setRowCount(0);
+        produtos = new CadastrarProdutosDAO().listarTodos();
+
+        for (Produtos produto : produtos) {
+            tableModel.addRow(new Object[]{produto.getNome(),produto.getPreco(), produto.getCodigoBarra(), produto.getQuantidade()});
+            
+        }
+
     }
 
     public JTextField getInputNomeTextField() {
