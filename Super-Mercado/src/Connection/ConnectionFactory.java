@@ -14,7 +14,13 @@ public class ConnectionFactory {
     private static final String usuario = "postgres";
     private static final String senha = "postgres";
 
+<<<<<<< HEAD
  //----===SEMPRE LEMBRAR DE INSTALAR O DRIVER PARA NÃO OCORRER ERRO===----
+=======
+    private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String USUARIO = "postgres";
+    private static final String SENHA = "postgres1";
+>>>>>>> c782ce1b10c697bed7a9e000d1588ea5514a3ab7
 
     /* Métodos */
     public static Connection getConnection() {

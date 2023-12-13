@@ -47,14 +47,12 @@ public class VendasDAO {
     public void realizarVenda(String codigoBarras, String cliente, String quantidade, String descontoAplicado,
             String total) {
         PreparedStatement stmtInserir = null;
-        PreparedStatement stmsDeletar = null;
-
-        // Instanciando vendas
-        vendas = new ArrayList<>();
+        PreparedStatement stmtDeletar = null;
 
         String sqlCadastrarVenda = "INSERT INTO vendas_mercado (codigoBarras, cliente, quantidade, descontoAplicado, total) VALUES(?, ?, ?, ?, ?)";
         String deletarItemVendido = "DELETE FROM vendas_mercado WHERE codigoBarras = ?";
         try {
+            connection.setAutoCommit(false);
             stmtInserir = this.connection.prepareStatement(sqlCadastrarVenda);
 
             /* Ejetor SQL */
@@ -64,22 +62,42 @@ public class VendasDAO {
             stmtInserir.setString(4, descontoAplicado);
             stmtInserir.setString(5, total);
 
+            int linhasAfetadasInserir = stmtInserir.executeUpdate();
 
-            int linhasAfetadas = stmtInserir.executeUpdate();
-            System.out.println(
-                    linhasAfetadas > 0 ? "Venda cadastrada com sucesso." : "Não foi possível cadastrar a venda.");
+            // Deletar item vendido
+            stmtDeletar = connection.prepareStatement(deletarItemVendido);
+            stmtDeletar.setString(1, codigoBarras);
+
+            int linhasAfetadasDeletar = stmtDeletar.executeUpdate();
+
+            // Verifica se ambas acoes foram realizadas
+            if (linhasAfetadasInserir > 0 && linhasAfetadasDeletar > 0) {
+                connection.commit();// confirma a opereção
+                System.out.println("Venda realizada com sucesso.");
+            } else {
+                connection.rollback();// reverte a opereção, caso haja falhas
+                System.out.println("[Falha] Não foi possível realizar a venda.");
+            }
         } catch (SQLException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException rollbackException) {
+                rollbackException.printStackTrace();
+            }
             System.out.println("Não foi possível realizar a venda.");
             e.printStackTrace();
-        }finally{
+        } finally {
             try {
-                ConnectionFactory.closeConnection(connection, stmtInserir);
+                connection.setAutoCommit(true);//Retorna ao modo autocommit
+                ConnectionFactory.closeConnection(connection);
+                ConnectionFactory.closeConnection(stmtInserir);
+                ConnectionFactory.closeConnection(stmtDeletar);
             } catch (Exception e) {
                 System.out.println("Não foi possível fechar as conexões em realizarVenda.");
+                e.printStackTrace();
             }
         }
 
     }
-
 
 }
