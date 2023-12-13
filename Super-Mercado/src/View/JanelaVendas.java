@@ -1,5 +1,8 @@
 package View;
 
+import Controller.JanelaVendasControll;
+import DAO.VendasDAO;
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -45,6 +48,10 @@ public class JanelaVendas extends JPanel {
     private JButton finalizarCompra, excluir;
 
     public JanelaVendas() {
+
+        VendasDAO vendasDAO = new VendasDAO();
+        JanelaVendasControll controll = new JanelaVendasControll(this, vendasDAO);
+
         listaComprasModel = new DefaultListModel<>();
         listCompras = new JList<>(listaComprasModel);
         // Cor de fundo da janela
@@ -149,9 +156,37 @@ public class JanelaVendas extends JPanel {
         acoesInformacoesVenda.add(excluir, BorderLayout.NORTH);
         acoesInformacoesVenda.add(listCompras, BorderLayout.CENTER);
 
+        finalizarCompra.addActionListener(e -> controll.realizarCompra());
+
         // Adicionando ao painel principal usando um container
         container.add(informacoesVenda, BorderLayout.WEST);
         container.add(acoesInformacoesVenda, BorderLayout.CENTER);
         this.add(container);
     }
+
+    public JButton getFinalizarCompraButton() {
+        return finalizarCompra;
+    }
+
+    public JTextField getCodigoBarrasTextField() {
+        return codigoBarras;
+    }
+
+    public JTextField getClienteTextField() {
+        return cliente;
+    }
+
+    public JTextField getQuantidadeTextField() {
+        return quantidade;
+    }
+
+    public JTextField getDescontoAplicadoTextField() {
+        return descontoAplicado;
+    }
+
+    public JTextField getTotalTextField() {
+        return total;
+    }
+
+    
 }
