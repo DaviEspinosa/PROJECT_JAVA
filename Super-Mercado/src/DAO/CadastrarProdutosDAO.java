@@ -24,8 +24,8 @@ public class CadastrarProdutosDAO {
         public void criarTabela() {
 
             //Criando Tabela Caso Não Exista
-            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado ( NOME VARCHAR(30),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGO VARCHAR(255) PRIMARY KEY)";
-            try (Statement stmt = this.connection.createStatement()) {https://github.com/IgorOliverx/React_laravel.git
+            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado ( NOME VARCHAR(255),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGO VARCHAR(255) PRIMARY KEY)";
+            try (Statement stmt = this.connection.createStatement()) {
                 // Statement executando o sql para criar a tabela 
                 stmt.execute(sql);
                 System.out.println("Tabela criada com sucesso.");
@@ -39,7 +39,7 @@ public class CadastrarProdutosDAO {
         }
 
 
-        //Cadastrar Carro no banco
+        //Cadastrar no banco
     public void cadastrar(String nome, String preco, String quantidade, String codigoBarra) {
         PreparedStatement stmt = null;
         // Define a instrução para cadastrar na tabela
@@ -59,6 +59,28 @@ public class CadastrarProdutosDAO {
             ConnectionFactory.closeConnection(connection,stmt);
         }
     }
+
+        //Atualizar dados no banco
+        public void atualizar(String nome, String preco, String quantidade, String codigoBarra) {
+            PreparedStatement stmt = null;
+            // Define a instrução para atualizar dados pela placa
+            String sql = "UPDATE carros_lojacarros SET nome = ?, preco = ?, quantidade = ? WHERE codigoBarra = ?";
+            try {
+                stmt = connection.prepareStatement(sql);
+                stmt.setString(1, nome);
+                stmt.setString(2, preco);
+                stmt.setString(3, quantidade);
+                stmt.setString(4, codigoBarra);
+
+                stmt.executeUpdate();
+                System.out.println("Dados atualizados com sucesso");
+                
+            } catch (SQLException e) {
+                throw new RuntimeException("Erro ao atualizar dados no banco de dados.", e);
+            } finally {
+                ConnectionFactory.closeConnection(connection, stmt);
+            }
+        }
 
             // Listar todos os valores cadastrados
     public List<Produtos> listarTodos() {
