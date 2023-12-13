@@ -21,20 +21,21 @@ import Model.Produtos;
 
 public class JanelaCadastrarProdutos extends JPanel {
 
+    private int linhaSelecionada = -1;
     private List<Produtos> produtos;
     private JTable table;
     private DefaultTableModel tableModel;
     private JTextField inputNome;
     private JTextField inputQuantidade;
     private JTextField inputCodBarras;
-    private JTextField inputValor;private JButton cadastrarButton;
+    private JTextField inputValor;
+    private JButton cadastrarButton;
     private Color verdeClaro = new Color(49, 201, 94);
     private Color vermelhoClaro = new Color(199, 59, 59);
 
     public JanelaCadastrarProdutos() {
-       
-        CadastrarProdutosDAO cadastrarProdutosDAO = new CadastrarProdutosDAO();
-        CadastrarProdutosControll produtosControll = new CadastrarProdutosControll(this, cadastrarProdutosDAO);
+
+        CadastrarProdutosControll produtosControll = new CadastrarProdutosControll(produtos, tableModel, table);
 
         JPanel painelPrincipal = new JPanel(new GridLayout(2, 0));
         JPanel painelNorte = new JPanel();
@@ -48,6 +49,7 @@ public class JanelaCadastrarProdutos extends JPanel {
         painelPrincipal.add(painelTop);
         painelPrincipal.add(painelBottom);
         painelPrincipal.setBorder(BorderFactory.createLineBorder(new Color(28, 97, 70), 20));
+        painelPrincipal.setPreferredSize(new Dimension(500, 400));
 
         // ----====Painel Top====----
         JPanel painelDados = new JPanel();
@@ -57,10 +59,13 @@ public class JanelaCadastrarProdutos extends JPanel {
         painelTop.add(painelAcoes);
 
         // Dentro de Painel Dados
+
+        // inputs com placeholder (método dentro de produtosControll)
         inputNome = produtosControll.createTextFieldWithPlaceholderProdutos("Produto:");
         inputQuantidade = produtosControll.createTextFieldWithPlaceholderProdutos("Quantidade:");
         inputCodBarras = produtosControll.createTextFieldWithPlaceholderProdutos("Código:");
         inputValor = produtosControll.createTextFieldWithPlaceholderProdutos("Valor:");
+
         painelDados.setLayout(new BoxLayout(painelDados, BoxLayout.Y_AXIS));
         painelDados.add(inputNome);
         painelDados.add(inputQuantidade);
@@ -68,27 +73,26 @@ public class JanelaCadastrarProdutos extends JPanel {
         painelDados.add(inputValor);
 
         // Dentro de Painel Ações
-        JButton cadastrarButton = new JButton("Cadastrar");
+        cadastrarButton = new JButton("Cadastrar");
         JButton cancelarButton = new JButton("Cancelar");
+        JButton editarButton = new JButton("Editar");
+        JButton apagarButton = new JButton("Apagar");
         painelAcoes.add(cadastrarButton);
         painelAcoes.add(cancelarButton);
+        painelAcoes.add(editarButton);
+        painelAcoes.add(apagarButton);
         cadastrarButton.setBackground(verdeClaro);
         cancelarButton.setBackground(vermelhoClaro);
 
-        cadastrarButton.addActionListener(e -> produtosControll.cadastrarProdutos());
         // ----====Painel Bottom====----
-     
         painelBottom.setLayout(new BoxLayout(painelBottom, BoxLayout.Y_AXIS));
-        
-        // //tabela
+        // tabela
         JScrollPane jSPane = new JScrollPane();
         painelBottom.add(jSPane);
-        tableModel = new DefaultTableModel(new Object[][] {},
-                new String[] { "Nome", "Preço", "Quantidade", "Código" });
+        tableModel = new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Preço", "Quantidade", "Código" });
         table = new JTable(tableModel);
         jSPane.setViewportView(table);
         new CadastrarProdutosDAO().criarTabela();
-        
 
         this.add(painelNorte, BorderLayout.NORTH);
         this.add(painelPrincipal, BorderLayout.CENTER);

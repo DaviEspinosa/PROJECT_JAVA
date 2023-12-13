@@ -24,9 +24,11 @@ public class CadastrarProdutosControll {
     private JTable table;
     private DefaultTableModel tableModel;
 
-    public CadastrarProdutosControll(JanelaCadastrarProdutos view, CadastrarProdutosDAO cadastrarProdutosDAO) {
-        this.view = view;
-        this.cadastrarProdutosDAO = cadastrarProdutosDAO;
+    public CadastrarProdutosControll(List<Produtos> produtos, DefaultTableModel tableModel, JTable table) {
+        this.produtoList = produtoList;
+        this.tableModel = tableModel;
+        this.table = table;
+
     }
 
     // PlaceHolder
@@ -52,6 +54,33 @@ public class CadastrarProdutosControll {
 
     public void cadastrar(String nome, String preco, String quantidade, String codigoBarra) {
         new CadastrarProdutosDAO().cadastrar(nome, preco, quantidade, codigoBarra);
+
+    }
+
+    // Método atualizar Tabela
+    private void atualizarTabela() {
+
+        // Iniciar o tableModel
+        if (tableModel != null) {
+            // Ao iniciar as linhas existentes irão sumir
+            tableModel.setRowCount(0);
+            // puxa a lista de Carros do BD
+            produtoList = new CadastrarProdutosDAO().listarTodos();
+
+            // ele vai colocar no TableModel os carros que estão no banco de dados
+            for (Produtos produtos : produtoList) {
+                tableModel.addRow(new Object[] { produtos.getNome(), produtos.getPreco(), produtos.getQuantidade(), produtos.getCodigoBarra() });
+            }
+        }
+        // Se tableModel não foi iniciado ele exibira uma menssagem
+        else {
+            System.out.println("tableModel não inicializado. Certifique-se de passá-lo ao construtor.");
+        }
+    }
+
+    public void atualizar(String nome, String preco, String quantidade, String codigoBarra) {
+        atualizarTabela();
+
     }
 
     public void cadastrarProdutos() {

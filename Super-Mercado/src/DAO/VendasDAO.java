@@ -58,10 +58,10 @@ public class VendasDAO {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();  // Lide com as exceções de banco de dados de acordo com sua aplicação
+            e.printStackTrace();  
         }
 
-        // Se não encontrou o produto, você pode retornar um valor padrão, como 0.0
+        // Se não encontrou o produto
         return 0.0;
     }
 

@@ -57,7 +57,7 @@ public class JanelaVendas extends JPanel {
         JanelaVendasControll controll = new JanelaVendasControll(this, vendasDAO, listaComprasModel);
 new VendasDAO().criarTabelaVendas();
         // Cor de fundo da janela
-        this.setBackground(verdeClaro);
+        this.setBackground(new Color(17, 68, 48));
 
          // Instanciando o painel invisivel para deixar o container no centro da tela
          invisivel = new JPanel();

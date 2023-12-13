@@ -12,6 +12,6 @@ public class JanelaClientes extends JPanel {
     //Construtor
     public JanelaClientes() {
       this.setBounds(100, 120, 1200, 900);
-      this.setBackground(verdeClaro);
+      this.setBackground(new Color(17, 68, 48));
     }
 }

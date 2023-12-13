@@ -41,7 +41,7 @@ public class JanelaFechamentoCaixa extends JPanel {
     //Construtor
     public JanelaFechamentoCaixa() {
         // Cor de fundo da janela
-        this.setBackground(verdeClaro);
+        this.setBackground(new Color(17, 68, 48));
         this.setSize(600, 400);
 
         // Instanciando o painel invisivel para deixar o container no centro da tela

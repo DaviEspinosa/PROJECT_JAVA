@@ -9,16 +9,23 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
     /* Atibutos */
+   
+    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String usuario = "postgres";
+    private static final String senha = "postgres1";
 
+ //----===SEMPRE LEMBRAR DE INSTALAR O DRIVER PARA NÃO OCORRER ERRO===----
     private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
     private static final String USUARIO = "postgres";
     private static final String SENHA = "postgres1";
 
     /* Métodos */
-
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection(URL, USUARIO, SENHA);
+            System.out.println("Tentando estabelecer conexão...");
+            Connection connection = DriverManager.getConnection(url, usuario, senha);
+            System.out.println("Conexão estabelecida");
+            return connection;
         } catch (Exception e) {
             /* Capturando o erro */
 
