@@ -1,6 +1,7 @@
 package View;
 
 import Controller.JanelaVendasControll;
+import DAO.CadastrarProdutosDAO;
 import DAO.VendasDAO;
 
 import javax.swing.BorderFactory;
@@ -16,6 +17,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 public class JanelaVendas extends JPanel {
     private Color verdeClaro = new Color(49, 201, 94);
@@ -49,11 +51,11 @@ public class JanelaVendas extends JPanel {
 
     public JanelaVendas() {
 
-        VendasDAO vendasDAO = new VendasDAO();
-        JanelaVendasControll controll = new JanelaVendasControll(this, vendasDAO);
-
         listaComprasModel = new DefaultListModel<>();
         listCompras = new JList<>(listaComprasModel);
+        VendasDAO vendasDAO = new VendasDAO();
+        JanelaVendasControll controll = new JanelaVendasControll(this, vendasDAO, listaComprasModel);
+new VendasDAO().criarTabelaVendas();
         // Cor de fundo da janela
         this.setBackground(verdeClaro);
 
@@ -162,6 +164,7 @@ public class JanelaVendas extends JPanel {
         container.add(informacoesVenda, BorderLayout.WEST);
         container.add(acoesInformacoesVenda, BorderLayout.CENTER);
         this.add(container);
+        
     }
 
     public JButton getFinalizarCompraButton() {

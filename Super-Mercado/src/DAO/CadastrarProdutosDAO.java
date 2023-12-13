@@ -24,7 +24,7 @@ public class CadastrarProdutosDAO {
         public void criarTabela() {
 
             //Criando Tabela Caso Não Exista
-            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado ( NOME VARCHAR(30),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGO VARCHAR(255) PRIMARY KEY)";
+            String sql = "CREATE TABLE IF NOT EXISTS produtos_mercado ( NOME VARCHAR(30),PRECO VARCHAR(255),QUANTIDADE VARCHAR(255),CODIGOBARRAS VARCHAR(255) PRIMARY KEY)";
             try (Statement stmt = this.connection.createStatement()) {https://github.com/IgorOliverx/React_laravel.git
                 // Statement executando o sql para criar a tabela 
                 stmt.execute(sql);
@@ -43,7 +43,7 @@ public class CadastrarProdutosDAO {
     public void cadastrar(String nome, String preco, String quantidade, String codigoBarra) {
         PreparedStatement stmt = null;
         // Define a instrução para cadastrar na tabela
-        String sql = "INSERT INTO produtos_mercado (nome, preco, quantidade, codigoBarra) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO produtos_mercado (nome, preco, quantidade, codigo) VALUES (?, ?, ?, ?)";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, nome);
